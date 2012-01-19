@@ -13,7 +13,8 @@ else
 
   (
     echo building perl ...
-    echo "  untar ..." && tar xzf perl-5.14.2.tar.gz && cd perl-5.14.2 &&
+    echo "  untar ..." && tar xzf perl-5.14.2.tar.gz &&
+    rm perl-5.14.2.tar.gz && cd perl-5.14.2 &&
     echo "  configure ... " &&
       sh Configure -de -Dprefix=`pwd`/../perl >/dev/null 2>&1 &&
     echo "  make ... " && make >/dev/null 2>&1 &&
