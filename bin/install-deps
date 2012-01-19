@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ `whoami` != root ]; then
+  echo You need to run this as root
+  exit 1
+fi
+
+(which wget >/dev/null 2>/dev/null && echo wget is already installed) || (
+  echo -n "installing wget ... "
+  (apt-get install wget >/dev/null 2>/dev/null && echo done) || (
+    echo FAILED
+    exit 1
+  )
+)
+
+mysqladmin -u root version >/dev/null 2>/dev/null || (
+  echo you need to install mysql, the mysql client tools
+  echo and make sure root can log in to mysql with no password.
+  exit 1
+)

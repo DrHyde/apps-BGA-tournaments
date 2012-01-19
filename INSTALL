@@ -1,0 +1,5 @@
+Please run bin/install-deps as root
+
+Then run bin/create-database as an ordinary user
+
+Then run bin/install-perl as an ordinary user

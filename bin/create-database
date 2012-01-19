@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mysql -u root bgatournaments -e "select schema()" >/dev/null 2>/dev/null &&
+  echo the bgatournaments database already exists in mysql, &&
+  echo I\'m not going to trash it, so you need to set up manually. &&
+  exit 1
+
+echo -n "creating database ... "
+(mysqladmin -u root create bgatournaments >/dev/null 2>/dev/null  && echo done) || echo FAILED
