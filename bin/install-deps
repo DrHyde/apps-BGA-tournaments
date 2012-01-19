@@ -11,7 +11,7 @@ fi
     echo FAILED
     exit 1
   )
-)
+) &&
 
 mysqladmin -u root version >/dev/null 2>/dev/null || (
   echo you need to install mysql, the mysql client tools

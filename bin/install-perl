@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ -x perl/bin/perl ]; then
+  echo perl already installed
+else
+  if [ ! -e perl-5.14.2.tar.gz ]; then
+    echo -n "downloading perl source code ... "
+    (wget -q http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/perl-5.14.2.tar.gz && echo done) || echo FAILED
+    if [ ! -e perl-5.14.2.tar.gz ]; then
+      exit 1;
+    fi
+  fi
+
+  (
+    echo building perl ...
+    echo "  untar ..." && tar xzf perl-5.14.2.tar.gz && cd perl-5.14.2 &&
+    echo "  configure ... " &&
+      sh Configure -de -Dprefix=`pwd`/../perl >/dev/null 2>&1 &&
+    echo "  make ... " && make >/dev/null 2>&1 &&
+    echo "  test ... " && make test >/dev/null 2>&1 &&
+    echo "  install ... " && make install >/dev/null 2>&1 &&
+    echo done
+  ) || echo FAILED
+fi
