@@ -13,13 +13,24 @@ else
 
   (
     echo building perl ...
+    PERLDIR=`pwd`/perl
     echo "  untar ..." && tar xzf perl-5.14.2.tar.gz &&
     rm perl-5.14.2.tar.gz && cd perl-5.14.2 &&
     echo "  configure ... " &&
-      sh Configure -de -Dprefix=`pwd`/../perl >/dev/null 2>&1 &&
+      sh Configure -de -Dprefix=$PERLDIR >/dev/null 2>&1 &&
     echo "  make ... " && make >/dev/null 2>&1 &&
     echo "  test ... " && make test >/dev/null 2>&1 &&
     echo "  install ... " && make install >/dev/null 2>&1 &&
     echo done
+    cd ..
+    rm -rf perl-5.14.2 &
   ) || echo FAILED
+fi
+
+if [ -x perl/bin/cpanm ]; then
+  echo cpanminus already installed
+else
+  echo -n "installing cpanminus ... "
+  wget -q -O - http://cpanmin.us | perl/bin/perl - App::cpanminus
+  echo done
 fi
