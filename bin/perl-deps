@@ -6,6 +6,7 @@ exit;
 MODULE: foreach my $module (qw(
   DBD::mysql DBIx::Class Dancer
   Template
+  YAML
 )) {
   if(eval "use $module; \$${module}::VERSION") {
     print "$module is already installed\n";
