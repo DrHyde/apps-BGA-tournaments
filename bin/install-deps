@@ -14,7 +14,8 @@ fi
 ) &&
 
 mysqladmin -u root version >/dev/null 2>/dev/null || (
-  echo you need to install mysql, the mysql client tools
-  echo and make sure root can log in to mysql with no password.
+  echo you need to install mysql, the mysql client tools, the client
+  echo libraries and headers, and make sure root can log in to mysql
+  echo with no password.
   exit 1
 )

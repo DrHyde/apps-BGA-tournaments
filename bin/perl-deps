@@ -1,0 +1,15 @@
+#!/bin/sh
+perl/bin/perl -x $0
+exit;
+
+#!/bin/perl
+MODULE: foreach my $module (qw(
+  DBD::mysql DBIx::Class Dancer
+)) {
+  if(eval "use $module; \$${module}::VERSION") {
+    print "$module is already installed\n";
+    next MODULE;
+  }
+  print "installing $module ...\n";
+  system('perl/bin/cpanm', '-q', $module);
+}
