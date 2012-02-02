@@ -1,1 +1,12 @@
-port: 8000
+appname: "BGATournaments"
+charset: "UTF-8"
+template: "template_toolkit"
+environment: "development"
+
+layout: "main"
+
+engines:
+  template_toolkit:
+    encoding:  'utf8'
+    start_tag: '[%'
+    end_tag:   '%]'

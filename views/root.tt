@@ -1,0 +1,7 @@
+Nothing to see here, move along
+
+<ul>
+  [% FOREACH option = options.keys.sort %]
+    <li><a href=[% options.$option %]>[% option %]
+  [% END %]
+</ul>

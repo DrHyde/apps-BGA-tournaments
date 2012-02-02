@@ -1,8 +1,8 @@
 #!/bin/sh
-perl/bin/perl -x $0
-exit;
 
-#!/bin/perl
-use FindBin;
-use lib "$FindBin::Bin/../lib";
+exec perl/bin/perl -x $0
+
+#!perl
+use Dancer;
 use BGATournaments;
+dance;
