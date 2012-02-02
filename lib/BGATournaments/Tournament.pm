@@ -3,7 +3,11 @@ package BGATournaments::Tournament;
 use strict;
 use warnings;
 
-sub run {
+sub list {
+  return {};
+}
+
+sub details {
   return {};
 }
 

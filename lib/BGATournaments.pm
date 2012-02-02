@@ -5,9 +5,10 @@ use warnings;
 
 use Dancer ':syntax';
 
+get '/tournaments'                => widget(Tournament => 'list');
+get '/tournaments/:tournament_id' => widget(Tournament => 'details');
+
 get '/'                           => widget('Root');
-get '/tournaments'                => widget('Tournament');
-# get '/tournaments/:tournament_id' => widget('Tournament::Details');
 
 after sub {
   my $response = shift;
@@ -33,22 +34,24 @@ sub template_mapper {
   my $route = shift;
   warn("Looking for $route\n");
   my $map = {
-    '/(:foo)?' => 'root'
+    '^/$'           => 'root',
+    '^/tournaments$' => 'list-tournaments',
   };
   foreach my $re (keys %{$map}) {
     warn("Trying ".qr($re)."\n");
-    if($route =~ /^$re$/) { return $map->{$re}.'.tt'; }
+    if($route =~ /$re/) { return $map->{$re}.'.tt'; }
   }
   return "errors/notemplate.tt";
 }
 
 sub widget {
   my $widget = __PACKAGE__.'::'.shift;
+  my $method = shift() || 'run';
   eval "use $widget; \@${widget}::ISA = '".__PACKAGE__."'; $widget->import()";
   if($@) {
     die("can't load $widget: $@\n");
   }
-  return sub { $widget->run() };
+  return sub { $widget->$method() };
 }
 
 1;
