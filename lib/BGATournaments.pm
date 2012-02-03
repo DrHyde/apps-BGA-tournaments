@@ -9,6 +9,7 @@ local $Data::Dumper::Indent = 1;
 
 use Dancer ':syntax';
 use BGATournaments::Widget;
+use BGATournaments::Database;
 
 get '/tournaments'                => widget(Tournament => 'list');
 get '/tournaments/:tournament_id' => widget(Tournament => 'details');
@@ -36,7 +37,8 @@ sub widget {
       params   => params() || {},
       captures => captures() || {},
       request  => request(),
-      route    => $route
+      route    => $route,
+      schema   => BGATournaments::Database->schema(),
     );
     my $results = $widget->$method();
     my $rendered = template $template, {

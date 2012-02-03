@@ -4,7 +4,10 @@ use strict;
 use warnings;
 
 sub list {
-  return {};
+  my $self = shift;
+  my $database = $self->{schema};
+  my @rows = $database->resultset('Tournament')->all();
+  return { tournaments => \@rows };
 }
 
 sub details {

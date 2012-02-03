@@ -1,1 +1,21 @@
-list of all tournaments goes here ...
+Available tournaments ...
+
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Rounds</th>
+    <th>Class</th>
+    <th>Start</th>
+    <th>End</th>
+  </tr>
+  [% FOREACH tournament = tournaments %]
+    <tr>
+      <td><a href=/tournaments/[% tournament.id %]>[% tournament.name %]</td>
+      <td valign=top>[% tournament.rounds %]</td>
+      <td valign=top>[% tournament.class %]</td>
+      <td valign=top>[% tournament.start_date %]</td>
+      <td valign=top>[% tournament.end_date %]</td>
+    </tr>
+  [% END %]
+</table>
+</ul>
