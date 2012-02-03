@@ -8,6 +8,7 @@ use Data::Dumper;
 local $Data::Dumper::Indent = 1;
 
 use Dancer ':syntax';
+use BGATournaments::Widget;
 
 get '/tournaments'                => widget(Tournament => 'list');
 get '/tournaments/:tournament_id' => widget(Tournament => 'details');
@@ -15,19 +16,28 @@ get '/tournaments/:tournament_id' => widget(Tournament => 'details');
 get '/'                           => widget('Root');
 
 sub widget {
-  my $widget = shift;
+  my $widgetclass = shift;
   my $method = shift() || 'run';
-  (my $template = lc("${widget}-$method.tt")) =~ s/::/-/g;
+  (my $template = lc("${widgetclass}-$method.tt")) =~ s/::/-/g;
   if(!-e "views/$template") {
     $template = "errors-notemplate.tt";
   }
-  $widget = __PACKAGE__.'::'.$widget;
-  eval "use $widget";
+  $widgetclass = __PACKAGE__.'::Widget::'.$widgetclass;
+  eval "use $widgetclass";
   if($@) {
-    die("can't load $widget: $@\n");
+    die("can't load $widgetclass: $@\n");
   }
+
+  eval "push \@${widgetclass}::ISA, '".__PACKAGE__."::Widget'";
+
   return sub {
     my $route = request()->{_route_pattern};
+    my $widget = $widgetclass->new(
+      params   => params() || {},
+      captures => captures() || {},
+      request  => request(),
+      route    => $route
+    );
     my $results = $widget->$method();
     my $rendered = template $template, {
       dancer => { route => $route, template => $template, },

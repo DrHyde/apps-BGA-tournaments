@@ -1,4 +1,4 @@
-package BGATournaments::Tournament;
+package BGATournaments::Widget::Tournament;
 
 use strict;
 use warnings;
