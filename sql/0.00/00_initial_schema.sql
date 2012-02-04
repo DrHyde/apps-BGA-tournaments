@@ -8,3 +8,15 @@ CREATE TABLE tournament (
   website    char(128) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE registration (
+  tournament_id CHAR(64) NOT NULL,
+  email         CHAR(255) NOT NULL,
+  given_name    CHAR(32) NOT NULL,
+  family_name   CHAR(64) NOT NULL,
+  grade         CHAR(3) NOT NULL,
+  club          CHAR(64), -- can be NULL
+  country       CHAR(2) NOT NULL,
+  show_on_site  INT,
+  PRIMARY KEY (tournament_id, email, given_name, family_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

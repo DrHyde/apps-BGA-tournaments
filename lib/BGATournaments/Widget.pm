@@ -9,7 +9,6 @@ sub new {
 }
 
 sub params { return shift()->{params}; }
-sub captures { return shift()->{captures}; }
 sub request { return shift()->{request}; }
 sub route { return shift()->{route}; }
 

@@ -1,0 +1,26 @@
+<h1>[% tournament.name %]</h1>
+<table>
+  <tr><th align=right>Starts:</th><td>[% tournament.start_date %]</td></tr>
+  <tr><th align=right>Ends:</th><td>[% tournament.end_date %]</td></tr>
+  <tr><th align=right>Rounds:</th><td>[% tournament.rounds %]</td></tr>
+  <tr><th align=right>Class:</th><td>[% tournament.class%]</td></tr>
+</table>
+
+For more details please see <a href=[% tournament.website %]>the tournament's own website</a>.
+
+There are currently [% tournament.total_registered %] people registered:
+
+<table>
+  <tr><th>Given name</th><th>Family name</th><th>Grade</th><th>Club</th><th>Country</th></tr>
+  [% FOREACH person = tournament.people_to_show %]
+  <tr>
+    <td>[% person.given_name %]</td>
+    <td>[% person.family_name %]</td>
+    <td>[% person.grade %]</td>
+    <td>[% person.club %]</td>
+    <td>[% person.country %]</td>
+  </tr>
+  [% END %]
+</table>
+
+plus [% tournament.total_hidden %] who didn't want to be listed above.

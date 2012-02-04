@@ -5,7 +5,6 @@ use warnings;
 
 use constant DEBUG => 1;
 use Data::Dumper;
-local $Data::Dumper::Indent = 1;
 
 use Dancer ':syntax';
 use BGATournaments::Widget;
@@ -35,7 +34,6 @@ sub widget {
     my $route = request()->{_route_pattern};
     my $widget = $widgetclass->new(
       params   => params() || {},
-      captures => captures() || {},
       request  => request(),
       route    => $route,
       schema   => BGATournaments::Database->schema(),
@@ -45,6 +43,7 @@ sub widget {
       dancer => { route => $route, template => $template, },
       %{$results}
     };
+    local $Data::Dumper::Indent = 1;
     $rendered .= '<xmp>'.Dumper($results).'</xmp>' if(DEBUG);
   };
 }
