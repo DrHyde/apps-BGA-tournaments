@@ -7,7 +7,7 @@ use base 'DBIx::Class::Core';
 __PACKAGE__->table('registration');
 __PACKAGE__->add_columns(qw(
   tournament_id email given_name family_name
-  grade club country show_on_site
+  grade club country show_on_site editkey
 ));
 
 __PACKAGE__->belongs_to(

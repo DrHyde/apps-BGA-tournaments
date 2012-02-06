@@ -18,5 +18,6 @@ CREATE TABLE registration (
   club          CHAR(64), -- can be NULL
   country       CHAR(2) NOT NULL,
   show_on_site  INT,
+  editkey       CHAR(32), -- Digest::MD5::md5_hex
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
