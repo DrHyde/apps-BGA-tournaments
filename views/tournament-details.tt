@@ -24,3 +24,5 @@ There are currently [% tournament.total_registered %] people registered:
 </table>
 
 plus [% tournament.total_hidden %] who didn't want to be listed above.
+
+<p><a href=/tournaments/[% tournament.id %]/registerform>Register for this tournament</a>

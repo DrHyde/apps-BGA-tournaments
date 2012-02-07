@@ -1,0 +1,42 @@
+<form method=POST action=/tournaments/london-open-2012/registerresults>
+
+<p>Please only use Roman characters in this form, transliterating if necessary.
+   So if your name is Владимир, please put "Vladimir", or put "Diogenes" for
+   Διογένης.  This is so that the tournament organiser can read it.
+   Fields marked with a star are compulsory.
+
+[% MACRO asterisk(field) BLOCK;
+  IF form.$field == '';
+    '<font color=red>*</font>';
+  ELSE;
+    '*';
+  END;
+END; %]
+
+<table>
+  <tr>
+    <th align=right>Given name [% asterisk('given_name') %]</th>
+    <td><input type=text name=given_name value="[% form.given_name | html %]"></td>
+  </tr>
+  <tr>
+    <th align=right>Family name [% asterisk('family_name') %]</th>
+    <td><input type=text name=family_name value="[% form.family_name | html %]"></td>
+  </tr>
+  <tr>
+    <th align=right>Club</th>
+    <td><input type=text name=club value="[% form.club | html %]"></td>
+  </tr>
+  <tr>
+    <th align=right>Country [% asterisk('country') %]</th>
+    <td><input type=text name=country value="[% form.country | html %]"></td>
+  </tr>
+  <tr>
+    <th align=right>Grade [% asterisk('grade') %]</th>
+    <td><input type=text name=grade value="[% form.grade | html %]"></td>
+  </tr>
+  <tr><td colspan=2>
+    <input type=checkbox checked> untick this if you want to hide your registration
+  </td></tr>
+</table>
+
+<input type=submit></form>
