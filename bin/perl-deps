@@ -6,7 +6,7 @@ exit;
 MODULE: foreach my $module (qw(
   DBD::mysql DBIx::Class Dancer
   Digest::MD5 Data::UUID
-  Template YAML Module::Refresh
+  Template YAML
 )) {
   if(eval "use $module; \$${module}::VERSION") {
     print "$module is already installed\n";

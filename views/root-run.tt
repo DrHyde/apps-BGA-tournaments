@@ -1,7 +1,5 @@
 Nothing to see here, move along
 
 <ul>
-  [% FOREACH option = options.keys.sort %]
-    <li><a href=[% options.$option %]>[% option %]
-  [% END %]
+  <li><a href=/tournaments>See all upcoming tournaments</a>
 </ul>
