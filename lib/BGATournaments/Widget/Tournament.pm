@@ -5,6 +5,8 @@ use warnings;
 use Dancer qw(:syntax);
 use DateTime;
 use DateTime::Format::MySQL;
+use Data::UUID;
+use Digest::MD5 qw(md5_base64);
 
 use base qw(BGATournaments::Widget);
 
@@ -56,15 +58,34 @@ sub registerformresults {
 
   my $database = $self->schema();
   my $tournament = $database->resultset('Tournament')->find($tournament_id);
-  eval { $database->resultset('Registration')->create({
-    (map { $_ => params()->{$_} } ('tournament_id', @mandatory_reg_fields)),
-    show_on_site => (params()->{show_on_site} ? 1 : 0),
-    (params()->{club} ? (club => params()->{club}) : ()),
-  }) };
-  return {
+  my $registration = $database->resultset('Registration')->find({
+    map { $_ => params()->{$_} } qw(tournament_id email given_name family_name)
+  });
+
+  my $return = {
     tournament => $tournament,
     template   => 'tournament-details.tt',
-    message    => ($@ ? 'regfailed' : 'registered'),
+  };
+
+  if($registration) {
+    # already registered
+    return { %{$return}, message => 'alreadyregistered' };
+  };
+  eval {
+    $registration = $database->resultset('Registration')->create({
+      (map { $_ => params()->{$_} } ('tournament_id', @mandatory_reg_fields)),
+      show_on_site => (params()->{show_on_site} ? 1 : 0),
+      (params()->{club} ? (club => params()->{club}) : ()),
+      editkey => md5_base64(rand().$$.Data::UUID->new()->create_str())
+    });
+  };
+  my $message = $@ ? 'regfailed' : 'registered';
+  if($message eq 'registered') {
+    # FIXME send email
+  }
+  return { %{$return},
+    message      => $message;
+    registration => $registration,
   };
 }
 

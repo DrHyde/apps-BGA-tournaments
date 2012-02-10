@@ -2,20 +2,29 @@
 
 [% IF message == 'registered' %]
   <p><font color=green><strong>Thanks for registering!</strong></font>
+  <p>If you want to edit your registration in the future please visit 
+    <a href=/tournaments/[% tournament.id %]/editregistration/[% registration.editkey %]>this personalised URL</a>.
 [% ELSIF message == 'regfailed' %]
   <p><font color=red><strong>Registration failed, please <a href=mailto:[% tournament.email %]>email the organiser</a></strong></font>
+[% ELSIF message == 'alreadyregistered' %]
+  <p><font color=red><strong>You appear to be already registered, if you want to change anything you should use the edit key you were sent originally, or <a href=mailto:[% tournament.email %]>email the organiser</a></strong></font>
 [% END %]
 
 <table>
-  <tr><th align=right>Starts:</th><td>[% tournament.start_date %]</td></tr>
-  <tr><th align=right>Ends:</th><td>[% tournament.end_date %]</td></tr>
-  <tr><th align=right>Rounds:</th><td>[% tournament.rounds %]</td></tr>
-  <tr><th align=right>Class:</th><td>[% tournament.class%]</td></tr>
+  <tr>
+    <th align=right>Starts:</th><td>[% tournament.start_date %]</td>
+    <th align=right>Rounds:</th><td>[% tournament.rounds %]</td>
+  <tr>
+    <th align=right>Ends:</th><td>[% tournament.end_date %]</td>
+    <th align=right>Class:</th><td>[% tournament.class%]</td>
+  </tr>
 </table>
 
 For more details please see <a href=[% tournament.website %]>the tournament's own website</a>.
 
-There are currently [% tournament.total_registered %] people registered:
+There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
+  currently [% tournament.total_registered %]
+  [% IF tournament.total_registered == 1 %] person [% ELSE %] people [% END %] registered:
 
 <table>
   <tr><th>Given name</th><th>Family name</th><th>Grade</th><th>Club</th><th>Country</th></tr>
@@ -30,6 +39,8 @@ There are currently [% tournament.total_registered %] people registered:
   [% END %]
 </table>
 
-including [% tournament.total_hidden %] who didn't want to be listed above.
+[% IF tournament.total_hidden %]
+  including [% tournament.total_hidden %] who didn't want to be listed above.
+[% END %]
 
 <p><a href=/tournaments/[% tournament.id %]/registerform>Register for this tournament</a>
