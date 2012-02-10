@@ -1,4 +1,7 @@
-<form method=POST action=/tournaments/london-open-2012/registerresults>
+<form method=POST action=/tournaments/london-open-2012/[% IF nextaction; nextaction; ELSE; 'registerresults'; END %]>
+[% IF form.editkey %]
+  <input type=hidden name=editkey value="[% form.editkey %]">
+[% END %]
 
 <p>Please only use Roman characters in this form, transliterating if necessary.
    So if your name is Владимир, please put "Vladimir", or put "Diogenes" for

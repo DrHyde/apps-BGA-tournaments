@@ -10,12 +10,14 @@ use Dancer ':syntax';
 use BGATournaments::Widget;
 use BGATournaments::Database;
 
-get  '/tournaments'                                => widget(Tournament => 'list');
-get  '/tournaments/:tournament_id'                 => widget(Tournament => 'details');
-get  '/tournaments/:tournament_id/registerform'    => widget(Tournament => 'registerform');
-post '/tournaments/:tournament_id/registerresults' => widget(Tournament => 'registerformresults');
+get  '/tournaments'                                          => widget(Tournament => 'list');
+get  '/tournaments/:tournament_id'                           => widget(Tournament => 'details');
+get  '/tournaments/:tournament_id/registerform'              => widget(Tournament => 'registerform');
+post '/tournaments/:tournament_id/registerresults'           => widget(Tournament => 'registerformresults');
+get  '/tournaments/:tournament_id/editregistration/:editkey' => widget(Tournament => 'editregisterform');
+post '/tournaments/:tournament_id/editregistrationresults'   => widget(Tournament => 'editregisterformresults');
 
-get  '/'                                    => widget('Root');
+get  '/'                                                     => widget('Root');
 
 sub widget {
   my $widgetclass = shift;

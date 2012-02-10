@@ -1,9 +1,13 @@
 <h1>[% tournament.name %]</h1>
 
-[% IF message == 'registered' %]
+[% IF message == 'registered' || message == 'edited' %]
   <p><font color=green><strong>Thanks for registering!</strong></font>
-  <p>If you want to edit your registration in the future please visit 
+  <p>If you want to edit your registration [% IF message == 'edited' %] again [% END %] in the future please visit 
     <a href=/tournaments/[% tournament.id %]/editregistration/[% registration.editkey %]>this personalised URL</a>.
+[% ELSIF message == 'notalreadyregistered' %]
+  <p><font color=red><strong>That key isn't registered</strong></font>
+[% ELSIF message == 'wrongkey' %]
+  <p><font color=red><strong>Invalid edit key, please <a href=mailto:[% tournament.email %]>email the organiser</a> if you need to make changes</strong></font>
 [% ELSIF message == 'regfailed' %]
   <p><font color=red><strong>Registration failed, please <a href=mailto:[% tournament.email %]>email the organiser</a></strong></font>
 [% ELSIF message == 'alreadyregistered' %]

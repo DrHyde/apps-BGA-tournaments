@@ -42,6 +42,28 @@ sub registerform {
   };
 }
 
+sub editregisterform {
+  my $self = shift;
+  my $tournament_id = params()->{tournament_id};
+  my $registration = $self->schema()->resultset('Registration')->find({editkey => params()->{editkey}});
+  if(!$registration) {
+    return {
+      tournament => $tournament_id,
+      template   => 'tournament-details.tt',
+      message    => 'wrongkey',
+    };
+  }
+  return {
+    tournament => $tournament_id,
+    template   => 'tournament-registerform.tt',
+    form       => {
+      map { $_ => $registration->$_() } (@all_reg_fields, 'editkey')
+    },
+    nextaction => 'editregistrationresults',
+  };
+
+}
+
 sub registerformresults {
   my $self = shift;
   my $tournament_id = params()->{tournament_id};
@@ -84,7 +106,49 @@ sub registerformresults {
     # FIXME send email
   }
   return { %{$return},
-    message      => $message;
+    message      => $message,
+    registration => $registration,
+  };
+}
+
+sub editregisterformresults {
+  my $self = shift;
+  my $tournament_id = params()->{tournament_id};
+  my %form = (_reg_form_as_hash(), editkey => params()->{editkey});;
+
+  foreach (@mandatory_reg_fields) {
+    if(!$form{$_}) {
+      return {
+        tournament => { id => $tournament_id },
+        form       => \%form,
+        template   => 'tournament-registerform.tt',
+        nextaction => 'editregistrationresults',
+      };
+    }
+  }
+
+  my $database = $self->schema();
+  my $tournament = $database->resultset('Tournament')->find($tournament_id);
+  my $registration = $database->resultset('Registration')->find({ editkey => params()->{editkey} }); 
+
+  my $return = {
+    tournament => $tournament,
+    template   => 'tournament-details.tt',
+  };
+
+  if(!$registration) {
+    # already registered
+    return { %{$return}, message => 'notalreadyregistered' };
+  };
+  foreach my $field (@mandatory_reg_fields, 'club') {
+    $registration->$field(params()->{$field});
+  }
+  $registration->show_on_site(params()->{show_on_site} ? 1 : 0);
+  $registration->update();
+
+    # FIXME send email
+  return { %{$return},
+    message      => 'edited',
     registration => $registration,
   };
 }
