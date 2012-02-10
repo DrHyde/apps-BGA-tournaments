@@ -1,3 +1,18 @@
+<script type="text/javascript" src="/sorttable.js"></script>
+<style type="text/css">
+th, td {
+  padding: 3px !important;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+</style>
+
 <h1>[% tournament.name %]</h1>
 
 [% IF message == 'registered' || message == 'edited' %]
@@ -30,8 +45,14 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
   currently [% tournament.total_registered %]
   [% IF tournament.total_registered == 1 %] person [% ELSE %] people [% END %] registered:
 
-<table>
-  <tr><th>Given name</th><th>Family name</th><th>Grade</th><th>Club</th><th>Country</th></tr>
+<table class=sortable>
+  <tr>
+    <th>Given name</th>
+    <th>Family name</th>
+    <th>Grade</th>
+    <th class=sorttable_gograde>Club</th>
+    <th>Country</th>
+  </tr>
   [% FOREACH person = tournament.people_to_show %]
   <tr>
     <td>[% person.given_name %]</td>
