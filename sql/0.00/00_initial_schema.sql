@@ -6,6 +6,7 @@ CREATE TABLE tournament (
   start_date date      NOT NULL,
   end_date   date      NOT NULL,
   website    char(128) NOT NULL,
+  email      char(128) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -17,7 +18,7 @@ CREATE TABLE registration (
   grade         CHAR(3) NOT NULL,
   club          CHAR(64), -- can be NULL
   country       CHAR(2) NOT NULL,
-  show_on_site  INT,
+  show_on_site  INT NOT NULL DEFAULT 0,
   editkey       CHAR(32), -- Digest::MD5::md5_hex
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

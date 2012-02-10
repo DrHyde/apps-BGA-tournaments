@@ -6,7 +6,7 @@ use base 'DBIx::Class::Core';
 
 __PACKAGE__->table('tournament');
 __PACKAGE__->add_columns(qw(
-  id name rounds class website
+  id name rounds class website email
 ));
 
 # FIXME inflate/defalte these

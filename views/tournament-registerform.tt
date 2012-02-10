@@ -23,6 +23,10 @@ END; %]
     <td><input type=text name=family_name value="[% form.family_name | html %]"></td>
   </tr>
   <tr>
+    <th align=right>Email [% asterisk('email') %]</th>
+    <td><input type=text name=email value="[% form.email | html %]"></td>
+  </tr>
+  <tr>
     <th align=right>Club</th>
     <td><input type=text name=club value="[% form.club | html %]"></td>
   </tr>
@@ -35,7 +39,7 @@ END; %]
     <td><input type=text name=grade value="[% form.grade | html %]"></td>
   </tr>
   <tr><td colspan=2>
-    <input type=checkbox checked> untick this if you want to hide your registration
+    <input name=show_on_site type=checkbox checked> untick this if you want to hide your registration
   </td></tr>
 </table>
 

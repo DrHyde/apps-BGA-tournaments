@@ -3,16 +3,20 @@ package BGATournaments::Widget::Tournament;
 use strict;
 use warnings;
 use Dancer qw(:syntax);
+use DateTime;
+use DateTime::Format::MySQL;
 
 use base qw(BGATournaments::Widget);
 
-my @mandatory_reg_fields = qw(given_name family_name country grade);
-my @all_reg_fields = (@mandatory_reg_fields, 'club');
+my @mandatory_reg_fields = qw(email given_name family_name country grade);
+my @all_reg_fields = (@mandatory_reg_fields, qw(club show_on_site));
 
 sub list {
   my $self = shift;
   my $database = $self->schema();
-  my @rows = $database->resultset('Tournament')->all();
+  my @rows = $database->resultset('Tournament')->search({
+    start_date => { '>' => DateTime::Format::MySQL->format_date(DateTime->now()) },
+  })->all();
   return { tournaments => \@rows };
 }
 
@@ -49,7 +53,19 @@ sub registerformresults {
       };
     }
   }
-  return { cows => 'go moo' };
+
+  my $database = $self->schema();
+  my $tournament = $database->resultset('Tournament')->find($tournament_id);
+  eval { $database->resultset('Registration')->create({
+    (map { $_ => params()->{$_} } ('tournament_id', @mandatory_reg_fields)),
+    show_on_site => (params()->{show_on_site} ? 1 : 0),
+    (params()->{club} ? (club => params()->{club}) : ()),
+  }) };
+  return {
+    tournament => $tournament,
+    template   => 'tournament-details.tt',
+    message    => ($@ ? 'regfailed' : 'registered'),
+  };
 }
 
 1;

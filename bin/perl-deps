@@ -5,6 +5,7 @@ exit;
 #!/bin/perl
 MODULE: foreach my $module (qw(
   DBD::mysql DBIx::Class Dancer
+  DateTime DateTime::Format::MySQL
   Digest::MD5 Data::UUID
   Template YAML
 )) {

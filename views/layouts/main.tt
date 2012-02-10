@@ -7,9 +7,17 @@
   <!-- <link rel="stylesheet" href="[% request.uri_base %]/css/style.css" /> -->
 </head>
 <body>
+<div id="header">
+  <a href=/>Home</a> |
+  <a href=/about>About</a> |
+  <a href=http://britgo.org/>BGA</a> |
+  <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
+</div>
+
 [% content %]
+
 <div id="footer">
-Powered by <a href="http://perldancer.org/">Dancer</a> [% dancer_version %]
+  Powered by <a href="http://perldancer.org/">Dancer</a> [% dancer_version %]
 </div>
 </body>
 </html>

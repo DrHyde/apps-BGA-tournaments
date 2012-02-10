@@ -1,4 +1,11 @@
 <h1>[% tournament.name %]</h1>
+
+[% IF message == 'registered' %]
+  <p><font color=green><strong>Thanks for registering!</strong></font>
+[% ELSIF message == 'regfailed' %]
+  <p><font color=red><strong>Registration failed, please <a href=mailto:[% tournament.email %]>email the organiser</a></strong></font>
+[% END %]
+
 <table>
   <tr><th align=right>Starts:</th><td>[% tournament.start_date %]</td></tr>
   <tr><th align=right>Ends:</th><td>[% tournament.end_date %]</td></tr>
@@ -23,6 +30,6 @@ There are currently [% tournament.total_registered %] people registered:
   [% END %]
 </table>
 
-plus [% tournament.total_hidden %] who didn't want to be listed above.
+including [% tournament.total_hidden %] who didn't want to be listed above.
 
 <p><a href=/tournaments/[% tournament.id %]/registerform>Register for this tournament</a>
