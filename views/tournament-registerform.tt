@@ -32,11 +32,280 @@ END; %]
   </tr>
   <tr>
     <th align=right>Country [% asterisk('country') %]</th>
-    <td><input type=text name=country value="[% form.country | html %]"></td>
+    <td>
+      <select name=country>
+        <option value=AF [% IF form.country == 'AF' %] selected [% END %]>Afghanistan    
+        <option value=AX [% IF form.country == 'AX' %] selected [% END %]>Åland Islands 
+        <option value=AL [% IF form.country == 'AL' %] selected [% END %]>Albania       
+        <option value=DZ [% IF form.country == 'DZ' %] selected [% END %]>Algeria       
+        <option value=AS [% IF form.country == 'AS' %] selected [% END %]>American Samoa
+        <option value=AD [% IF form.country == 'AD' %] selected [% END %]>Andorra       
+        <option value=AO [% IF form.country == 'AO' %] selected [% END %]>Angola
+        <option value=AI [% IF form.country == 'AI' %] selected [% END %]>Anguilla      
+        <option value=AQ [% IF form.country == 'AQ' %] selected [% END %]>Antarctica    
+        <option value=AG [% IF form.country == 'AG' %] selected [% END %]>Antigua and Barbuda   
+        <option value=AR [% IF form.country == 'AR' %] selected [% END %]>Argentina     
+        <option value=AM [% IF form.country == 'AM' %] selected [% END %]>Armenia       
+        <option value=AW [% IF form.country == 'AW' %] selected [% END %]>Aruba 
+        <option value=AU [% IF form.country == 'AU' %] selected [% END %]>Australia     
+        <option value=AT [% IF form.country == 'AT' %] selected [% END %]>Austria       
+        <option value=AZ [% IF form.country == 'AZ' %] selected [% END %]>Azerbaijan    
+        <option value=BS [% IF form.country == 'BS' %] selected [% END %]>Bahamas       
+        <option value=BH [% IF form.country == 'BH' %] selected [% END %]>Bahrain       
+        <option value=BD [% IF form.country == 'BD' %] selected [% END %]>Bangladesh    
+        <option value=BB [% IF form.country == 'BB' %] selected [% END %]>Barbados      
+        <option value=BY [% IF form.country == 'BY' %] selected [% END %]>Belarus       
+        <option value=BE [% IF form.country == 'BE' %] selected [% END %]>Belgium       
+        <option value=BZ [% IF form.country == 'BZ' %] selected [% END %]>Belize
+        <option value=BJ [% IF form.country == 'BJ' %] selected [% END %]>Benin 
+        <option value=BM [% IF form.country == 'BM' %] selected [% END %]>Bermuda       
+        <option value=BT [% IF form.country == 'BT' %] selected [% END %]>Bhutan
+        <option value=BO [% IF form.country == 'BO' %] selected [% END %]>Bolivia, Plurinational State of       
+        <option value=BQ [% IF form.country == 'BQ' %] selected [% END %]>Bonaire, Sint Eustatius and Saba      
+        <option value=BA [% IF form.country == 'BA' %] selected [% END %]>Bosnia and Herzegovina
+        <option value=BW [% IF form.country == 'BW' %] selected [% END %]>Botswana      
+        <option value=BV [% IF form.country == 'BV' %] selected [% END %]>Bouvet Island 
+        <option value=BR [% IF form.country == 'BR' %] selected [% END %]>Brazil
+        <option value=IO [% IF form.country == 'IO' %] selected [% END %]>British Indian Ocean Territory
+        <option value=BN [% IF form.country == 'BN' %] selected [% END %]>Brunei Darussalam     
+        <option value=BG [% IF form.country == 'BG' %] selected [% END %]>Bulgaria      
+        <option value=BF [% IF form.country == 'BF' %] selected [% END %]>Burkina Faso  
+        <option value=BI [% IF form.country == 'BI' %] selected [% END %]>Burundi       
+        <option value=KH [% IF form.country == 'KH' %] selected [% END %]>Cambodia      
+        <option value=CM [% IF form.country == 'CM' %] selected [% END %]>Cameroon      
+        <option value=CA [% IF form.country == 'CA' %] selected [% END %]>Canada
+        <option value=CV [% IF form.country == 'CV' %] selected [% END %]>Cape Verde    
+        <option value=KY [% IF form.country == 'KY' %] selected [% END %]>Cayman Islands
+        <option value=CF [% IF form.country == 'CF' %] selected [% END %]>Central African Republic      
+        <option value=TD [% IF form.country == 'TD' %] selected [% END %]>Chad  
+        <option value=CL [% IF form.country == 'CL' %] selected [% END %]>Chile 
+        <option value=CN [% IF form.country == 'CN' %] selected [% END %]>China 
+        <option value=CX [% IF form.country == 'CX' %] selected [% END %]>Christmas Island      
+        <option value=CC [% IF form.country == 'CC' %] selected [% END %]>Cocos (Keeling) Islands       
+        <option value=CO [% IF form.country == 'CO' %] selected [% END %]>Colombia      
+        <option value=KM [% IF form.country == 'KM' %] selected [% END %]>Comoros       
+        <option value=CG [% IF form.country == 'CG' %] selected [% END %]>Congo 
+        <option value=CD [% IF form.country == 'CD' %] selected [% END %]>Congo, the Democratic Republic of the 
+        <option value=CK [% IF form.country == 'CK' %] selected [% END %]>Cook Islands  
+        <option value=CR [% IF form.country == 'CR' %] selected [% END %]>Costa Rica    
+        <option value=CI [% IF form.country == 'CI' %] selected [% END %]>Côte d'Ivoire 
+        <option value=HR [% IF form.country == 'HR' %] selected [% END %]>Croatia       
+        <option value=CU [% IF form.country == 'CU' %] selected [% END %]>Cuba  
+        <option value=CW [% IF form.country == 'CW' %] selected [% END %]>Curaçao       
+        <option value=CY [% IF form.country == 'CY' %] selected [% END %]>Cyprus
+        <option value=CZ [% IF form.country == 'CZ' %] selected [% END %]>Czech Republic
+        <option value=DK [% IF form.country == 'DK' %] selected [% END %]>Denmark       
+        <option value=DJ [% IF form.country == 'DJ' %] selected [% END %]>Djibouti      
+        <option value=DM [% IF form.country == 'DM' %] selected [% END %]>Dominica      
+        <option value=DO [% IF form.country == 'DO' %] selected [% END %]>Dominican Republic    
+        <option value=EC [% IF form.country == 'EC' %] selected [% END %]>Ecuador       
+        <option value=EG [% IF form.country == 'EG' %] selected [% END %]>Egypt 
+        <option value=SV [% IF form.country == 'SV' %] selected [% END %]>El Salvador   
+        <option value=GQ [% IF form.country == 'GQ' %] selected [% END %]>Equatorial Guinea     
+        <option value=ER [% IF form.country == 'ER' %] selected [% END %]>Eritrea       
+        <option value=EE [% IF form.country == 'EE' %] selected [% END %]>Estonia       
+        <option value=ET [% IF form.country == 'ET' %] selected [% END %]>Ethiopia      
+        <option value=FK [% IF form.country == 'FK' %] selected [% END %]>Falkland Islands
+        <option value=FO [% IF form.country == 'FO' %] selected [% END %]>Faroe Islands 
+        <option value=FJ [% IF form.country == 'FJ' %] selected [% END %]>Fiji  
+        <option value=FI [% IF form.country == 'FI' %] selected [% END %]>Finland       
+        <option value=FR [% IF form.country == 'FR' %] selected [% END %]>France
+        <option value=GF [% IF form.country == 'GF' %] selected [% END %]>French Guiana 
+        <option value=PF [% IF form.country == 'PF' %] selected [% END %]>French Polynesia      
+        <option value=TF [% IF form.country == 'TF' %] selected [% END %]>French Southern Territories   
+        <option value=GA [% IF form.country == 'GA' %] selected [% END %]>Gabon 
+        <option value=GM [% IF form.country == 'GM' %] selected [% END %]>Gambia
+        <option value=GE [% IF form.country == 'GE' %] selected [% END %]>Georgia       
+        <option value=DE [% IF form.country == 'DE' %] selected [% END %]>Germany       
+        <option value=GH [% IF form.country == 'GH' %] selected [% END %]>Ghana 
+        <option value=GI [% IF form.country == 'GI' %] selected [% END %]>Gibraltar     
+        <option value=GR [% IF form.country == 'GR' %] selected [% END %]>Greece
+        <option value=GL [% IF form.country == 'GL' %] selected [% END %]>Greenland     
+        <option value=GD [% IF form.country == 'GD' %] selected [% END %]>Grenada       
+        <option value=GP [% IF form.country == 'GP' %] selected [% END %]>Guadeloupe    
+        <option value=GU [% IF form.country == 'GU' %] selected [% END %]>Guam  
+        <option value=GT [% IF form.country == 'GT' %] selected [% END %]>Guatemala     
+        <option value=GG [% IF form.country == 'GG' %] selected [% END %]>Guernsey      
+        <option value=GN [% IF form.country == 'GN' %] selected [% END %]>Guinea
+        <option value=GW [% IF form.country == 'GW' %] selected [% END %]>Guinea-Bissau 
+        <option value=GY [% IF form.country == 'GY' %] selected [% END %]>Guyana
+        <option value=HT [% IF form.country == 'HT' %] selected [% END %]>Haiti 
+        <option value=HM [% IF form.country == 'HM' %] selected [% END %]>Heard Island and McDonald Islands     
+        <option value=VA [% IF form.country == 'VA' %] selected [% END %]>Holy See (Vatican City State) 
+        <option value=HN [% IF form.country == 'HN' %] selected [% END %]>Honduras      
+        <option value=HK [% IF form.country == 'HK' %] selected [% END %]>Hong Kong     
+        <option value=HU [% IF form.country == 'HU' %] selected [% END %]>Hungary       
+        <option value=IS [% IF form.country == 'IS' %] selected [% END %]>Iceland       
+        <option value=IN [% IF form.country == 'IN' %] selected [% END %]>India 
+        <option value=ID [% IF form.country == 'ID' %] selected [% END %]>Indonesia     
+        <option value=IR [% IF form.country == 'IR' %] selected [% END %]>Iran, Islamic Republic of     
+        <option value=IQ [% IF form.country == 'IQ' %] selected [% END %]>Iraq  
+        <option value=IE [% IF form.country == 'IE' %] selected [% END %]>Ireland       
+        <option value=IM [% IF form.country == 'IM' %] selected [% END %]>Isle of Man   
+        <option value=IL [% IF form.country == 'IL' %] selected [% END %]>Israel
+        <option value=IT [% IF form.country == 'IT' %] selected [% END %]>Italy 
+        <option value=JM [% IF form.country == 'JM' %] selected [% END %]>Jamaica       
+        <option value=JP [% IF form.country == 'JP' %] selected [% END %]>Japan 
+        <option value=JE [% IF form.country == 'JE' %] selected [% END %]>Jersey
+        <option value=JO [% IF form.country == 'JO' %] selected [% END %]>Jordan
+        <option value=KZ [% IF form.country == 'KZ' %] selected [% END %]>Kazakhstan    
+        <option value=KE [% IF form.country == 'KE' %] selected [% END %]>Kenya 
+        <option value=KI [% IF form.country == 'KI' %] selected [% END %]>Kiribati      
+        <option value=KP [% IF form.country == 'KP' %] selected [% END %]>Korea, Democratic People's Republic of
+        <option value=KR [% IF form.country == 'KR' %] selected [% END %]>Korea, Republic of    
+        <option value=KW [% IF form.country == 'KW' %] selected [% END %]>Kuwait
+        <option value=KG [% IF form.country == 'KG' %] selected [% END %]>Kyrgyzstan    
+        <option value=LA [% IF form.country == 'LA' %] selected [% END %]>Lao People's Democratic Republic      
+        <option value=LV [% IF form.country == 'LV' %] selected [% END %]>Latvia
+        <option value=LB [% IF form.country == 'LB' %] selected [% END %]>Lebanon       
+        <option value=LS [% IF form.country == 'LS' %] selected [% END %]>Lesotho       
+        <option value=LR [% IF form.country == 'LR' %] selected [% END %]>Liberia       
+        <option value=LY [% IF form.country == 'LY' %] selected [% END %]>Libya 
+        <option value=LI [% IF form.country == 'LI' %] selected [% END %]>Liechtenstein 
+        <option value=LT [% IF form.country == 'LT' %] selected [% END %]>Lithuania     
+        <option value=LU [% IF form.country == 'LU' %] selected [% END %]>Luxembourg    
+        <option value=MO [% IF form.country == 'MO' %] selected [% END %]>Macao 
+        <option value=MK [% IF form.country == 'MK' %] selected [% END %]>Macedonia, the former Yugoslav Republic of    
+        <option value=MG [% IF form.country == 'MG' %] selected [% END %]>Madagascar    
+        <option value=MW [% IF form.country == 'MW' %] selected [% END %]>Malawi
+        <option value=MY [% IF form.country == 'MY' %] selected [% END %]>Malaysia      
+        <option value=MV [% IF form.country == 'MV' %] selected [% END %]>Maldives      
+        <option value=ML [% IF form.country == 'ML' %] selected [% END %]>Mali  
+        <option value=MT [% IF form.country == 'MT' %] selected [% END %]>Malta 
+        <option value=MH [% IF form.country == 'MH' %] selected [% END %]>Marshall Islands      
+        <option value=MQ [% IF form.country == 'MQ' %] selected [% END %]>Martinique    
+        <option value=MR [% IF form.country == 'MR' %] selected [% END %]>Mauritania    
+        <option value=MU [% IF form.country == 'MU' %] selected [% END %]>Mauritius     
+        <option value=YT [% IF form.country == 'YT' %] selected [% END %]>Mayotte       
+        <option value=MX [% IF form.country == 'MX' %] selected [% END %]>Mexico
+        <option value=FM [% IF form.country == 'FM' %] selected [% END %]>Micronesia, Federated States of       
+        <option value=MD [% IF form.country == 'MD' %] selected [% END %]>Moldova, Republic of  
+        <option value=MC [% IF form.country == 'MC' %] selected [% END %]>Monaco
+        <option value=MN [% IF form.country == 'MN' %] selected [% END %]>Mongolia      
+        <option value=ME [% IF form.country == 'ME' %] selected [% END %]>Montenegro    
+        <option value=MS [% IF form.country == 'MS' %] selected [% END %]>Montserrat    
+        <option value=MA [% IF form.country == 'MA' %] selected [% END %]>Morocco       
+        <option value=MZ [% IF form.country == 'MZ' %] selected [% END %]>Mozambique    
+        <option value=MM [% IF form.country == 'MM' %] selected [% END %]>Myanmar       
+        <option value=NA [% IF form.country == 'NA' %] selected [% END %]>Namibia       
+        <option value=NR [% IF form.country == 'NR' %] selected [% END %]>Nauru 
+        <option value=NP [% IF form.country == 'NP' %] selected [% END %]>Nepal 
+        <option value=NL [% IF form.country == 'NL' %] selected [% END %]>Netherlands   
+        <option value=NC [% IF form.country == 'NC' %] selected [% END %]>New Caledonia 
+        <option value=NZ [% IF form.country == 'NZ' %] selected [% END %]>New Zealand   
+        <option value=NI [% IF form.country == 'NI' %] selected [% END %]>Nicaragua     
+        <option value=NE [% IF form.country == 'NE' %] selected [% END %]>Niger 
+        <option value=NG [% IF form.country == 'NG' %] selected [% END %]>Nigeria       
+        <option value=NU [% IF form.country == 'NU' %] selected [% END %]>Niue  
+        <option value=NF [% IF form.country == 'NF' %] selected [% END %]>Norfolk Island
+        <option value=MP [% IF form.country == 'MP' %] selected [% END %]>Northern Mariana Islands      
+        <option value=NO [% IF form.country == 'NO' %] selected [% END %]>Norway
+        <option value=OM [% IF form.country == 'OM' %] selected [% END %]>Oman  
+        <option value=PK [% IF form.country == 'PK' %] selected [% END %]>Pakistan      
+        <option value=PW [% IF form.country == 'PW' %] selected [% END %]>Palau 
+        <option value=PS [% IF form.country == 'PS' %] selected [% END %]>Palestinian Territory, Occupied       
+        <option value=PA [% IF form.country == 'PA' %] selected [% END %]>Panama
+        <option value=PG [% IF form.country == 'PG' %] selected [% END %]>Papua New Guinea      
+        <option value=PY [% IF form.country == 'PY' %] selected [% END %]>Paraguay      
+        <option value=PE [% IF form.country == 'PE' %] selected [% END %]>Peru  
+        <option value=PH [% IF form.country == 'PH' %] selected [% END %]>Philippines   
+        <option value=PN [% IF form.country == 'PN' %] selected [% END %]>Pitcairn      
+        <option value=PL [% IF form.country == 'PL' %] selected [% END %]>Poland
+        <option value=PT [% IF form.country == 'PT' %] selected [% END %]>Portugal      
+        <option value=PR [% IF form.country == 'PR' %] selected [% END %]>Puerto Rico   
+        <option value=QA [% IF form.country == 'QA' %] selected [% END %]>Qatar 
+        <option value=RE [% IF form.country == 'RE' %] selected [% END %]>Réunion       
+        <option value=RO [% IF form.country == 'RO' %] selected [% END %]>Romania       
+        <option value=RU [% IF form.country == 'RU' %] selected [% END %]>Russian Federation    
+        <option value=RW [% IF form.country == 'RW' %] selected [% END %]>Rwanda
+        <option value=BL [% IF form.country == 'BL' %] selected [% END %]>Saint Barthélemy      
+        <option value=SH [% IF form.country == 'SH' %] selected [% END %]>Saint Helena, Ascension and Tristan da Cunha  
+        <option value=KN [% IF form.country == 'KN' %] selected [% END %]>Saint Kitts and Nevis 
+        <option value=LC [% IF form.country == 'LC' %] selected [% END %]>Saint Lucia   
+        <option value=MF [% IF form.country == 'MF' %] selected [% END %]>Saint Martin (French part)    
+        <option value=PM [% IF form.country == 'PM' %] selected [% END %]>Saint Pierre and Miquelon     
+        <option value=VC [% IF form.country == 'VC' %] selected [% END %]>Saint Vincent and the Grenadines      
+        <option value=WS [% IF form.country == 'WS' %] selected [% END %]>Samoa 
+        <option value=SM [% IF form.country == 'SM' %] selected [% END %]>San Marino    
+        <option value=ST [% IF form.country == 'ST' %] selected [% END %]>Sao Tome and Principe 
+        <option value=SA [% IF form.country == 'SA' %] selected [% END %]>Saudi Arabia  
+        <option value=SN [% IF form.country == 'SN' %] selected [% END %]>Senegal       
+        <option value=RS [% IF form.country == 'RS' %] selected [% END %]>Serbia
+        <option value=SC [% IF form.country == 'SC' %] selected [% END %]>Seychelles    
+        <option value=SL [% IF form.country == 'SL' %] selected [% END %]>Sierra Leone  
+        <option value=SG [% IF form.country == 'SG' %] selected [% END %]>Singapore     
+        <option value=SX [% IF form.country == 'SX' %] selected [% END %]>Sint Maarten (Dutch part)     
+        <option value=SK [% IF form.country == 'SK' %] selected [% END %]>Slovakia      
+        <option value=SI [% IF form.country == 'SI' %] selected [% END %]>Slovenia      
+        <option value=SB [% IF form.country == 'SB' %] selected [% END %]>Solomon Islands       
+        <option value=SO [% IF form.country == 'SO' %] selected [% END %]>Somalia       
+        <option value=ZA [% IF form.country == 'ZA' %] selected [% END %]>South Africa  
+        <option value=GS [% IF form.country == 'GS' %] selected [% END %]>South Georgia and the South Sandwich Islands  
+        <option value=SS [% IF form.country == 'SS' %] selected [% END %]>South Sudan   
+        <option value=ES [% IF form.country == 'ES' %] selected [% END %]>Spain 
+        <option value=LK [% IF form.country == 'LK' %] selected [% END %]>Sri Lanka     
+        <option value=SD [% IF form.country == 'SD' %] selected [% END %]>Sudan 
+        <option value=SR [% IF form.country == 'SR' %] selected [% END %]>Suriname      
+        <option value=SJ [% IF form.country == 'SJ' %] selected [% END %]>Svalbard and Jan Mayen
+        <option value=SZ [% IF form.country == 'SZ' %] selected [% END %]>Swaziland     
+        <option value=SE [% IF form.country == 'SE' %] selected [% END %]>Sweden
+        <option value=CH [% IF form.country == 'CH' %] selected [% END %]>Switzerland   
+        <option value=SY [% IF form.country == 'SY' %] selected [% END %]>Syrian Arab Republic  
+        <option value=TW [% IF form.country == 'TW' %] selected [% END %]>Taiwan, Province of China     
+        <option value=TJ [% IF form.country == 'TJ' %] selected [% END %]>Tajikistan    
+        <option value=TZ [% IF form.country == 'TZ' %] selected [% END %]>Tanzania, United Republic of  
+        <option value=TH [% IF form.country == 'TH' %] selected [% END %]>Thailand      
+        <option value=TL [% IF form.country == 'TL' %] selected [% END %]>Timor-Leste   
+        <option value=TG [% IF form.country == 'TG' %] selected [% END %]>Togo  
+        <option value=TK [% IF form.country == 'TK' %] selected [% END %]>Tokelau       
+        <option value=TO [% IF form.country == 'TO' %] selected [% END %]>Tonga 
+        <option value=TT [% IF form.country == 'TT' %] selected [% END %]>Trinidad and Tobago   
+        <option value=TN [% IF form.country == 'TN' %] selected [% END %]>Tunisia       
+        <option value=TR [% IF form.country == 'TR' %] selected [% END %]>Turkey
+        <option value=TM [% IF form.country == 'TM' %] selected [% END %]>Turkmenistan  
+        <option value=TC [% IF form.country == 'TC' %] selected [% END %]>Turks and Caicos Islands      
+        <option value=TV [% IF form.country == 'TV' %] selected [% END %]>Tuvalu
+        <option value=UG [% IF form.country == 'UG' %] selected [% END %]>Uganda
+        <option value=UA [% IF form.country == 'UA' %] selected [% END %]>Ukraine       
+        <option value=AE [% IF form.country == 'AE' %] selected [% END %]>United Arab Emirates  
+        <option value=GB [% IF ! form.country || form.country == 'GB' %] selected [% END %]>United Kingdom
+        <option value=US [% IF form.country == 'US' %] selected [% END %]>United States 
+        <option value=UM [% IF form.country == 'UM' %] selected [% END %]>United States Minor Outlying Islands  
+        <option value=UY [% IF form.country == 'UY' %] selected [% END %]>Uruguay       
+        <option value=UZ [% IF form.country == 'UZ' %] selected [% END %]>Uzbekistan    
+        <option value=VU [% IF form.country == 'VU' %] selected [% END %]>Vanuatu       
+        <option value=VE [% IF form.country == 'VE' %] selected [% END %]>Venezuela, Bolivarian Republic of     
+        <option value=VN [% IF form.country == 'VN' %] selected [% END %]>Viet Nam      
+        <option value=VG [% IF form.country == 'VG' %] selected [% END %]>Virgin Islands, British       
+        <option value=VI [% IF form.country == 'VI' %] selected [% END %]>Virgin Islands, U.S.  
+        <option value=WF [% IF form.country == 'WF' %] selected [% END %]>Wallis and Futuna     
+        <option value=EH [% IF form.country == 'EH' %] selected [% END %]>Western Sahara
+        <option value=YE [% IF form.country == 'YE' %] selected [% END %]>Yemen 
+        <option value=ZM [% IF form.country == 'ZM' %] selected [% END %]>Zambia
+        <option value=ZW [% IF form.country == 'ZW' %] selected [% END %]>Zimbabwe      
+      </select>
+    </td>
   </tr>
   <tr>
     <th align=right>Grade [% asterisk('grade') %]</th>
-    <td><input type=text name=grade value="[% form.grade | html %]"></td>
+    <td><select name=grade>
+      <option value='' [% IF ! form.grae %] selected [% END %]>-- please choose --
+      [% grades = [];
+         FOREACH number IN [1 .. 30];
+           grades.push(number _ 'k');
+         END;
+         grades = grades.reverse;
+         FOREACH number = [1 .. 7];
+           grades.push(number _ 'd');
+         END;
+         FOREACH number = [1 .. 9];
+           grades.push(number _ 'p');
+         END;
+      %]
+      [% FOREACH grade = grades.reverse %]
+        <option value=[% grade %] [% IF form.grade == grade %] selected [% END %]>[% grade %]
+      [% END %]
+    </select></td>
   </tr>
   <tr><td colspan=2>
     <input name=show_on_site type=checkbox checked> untick this if you want to hide your registration
