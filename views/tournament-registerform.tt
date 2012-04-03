@@ -311,6 +311,9 @@ END; %]
     </select></td>
   </tr>
   <tr><td colspan=2>
+    <input name=bga_member type=checkbox checked> are you a member of the BGA or another national Go organisation?
+  </td></tr>
+  <tr><td colspan=2>
     <input name=show_on_site type=checkbox checked> untick this if you want to hide your registration
   </td></tr>
 </table>

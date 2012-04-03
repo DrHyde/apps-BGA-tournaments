@@ -11,7 +11,7 @@ use Digest::MD5 qw(md5_base64);
 use base qw(BGATournaments::Widget);
 
 my @mandatory_reg_fields = qw(email given_name family_name country grade);
-my @all_reg_fields = (@mandatory_reg_fields, qw(club show_on_site));
+my @all_reg_fields = (@mandatory_reg_fields, qw(club show_on_site bga_member));
 
 sub list {
   my $self = shift;
@@ -97,6 +97,7 @@ sub registerformresults {
     $registration = $database->resultset('Registration')->create({
       (map { $_ => params()->{$_} } ('tournament_id', @mandatory_reg_fields)),
       show_on_site => (params()->{show_on_site} ? 1 : 0),
+      bga_member   => (params()->{bga_member}   ? 1 : 0),
       (params()->{club} ? (club => params()->{club}) : ()),
       editkey => md5_base64(rand().$$.Data::UUID->new()->create_str())
     });
@@ -144,6 +145,7 @@ sub editregisterformresults {
     $registration->$field(params()->{$field});
   }
   $registration->show_on_site(params()->{show_on_site} ? 1 : 0);
+  $registration->bga_member(params()->{bga_member} ? 1 : 0);
   $registration->update();
 
     # FIXME send email
