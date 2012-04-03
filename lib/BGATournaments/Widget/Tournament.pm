@@ -93,13 +93,18 @@ sub registerformresults {
     # already registered
     return { %{$return}, message => 'alreadyregistered' };
   };
+
+  # let's not use characters that mean something in URLs ...
+  (my $editkey = md5_base64(rand().$$.Data::UUID->new()->create_str()))
+    =~ s{/}{_}g
+
   eval {
     $registration = $database->resultset('Registration')->create({
       (map { $_ => params()->{$_} } ('tournament_id', @mandatory_reg_fields)),
       show_on_site => (params()->{show_on_site} ? 1 : 0),
       bga_member   => (params()->{bga_member}   ? 1 : 0),
       (params()->{club} ? (club => params()->{club}) : ()),
-      editkey => md5_base64(rand().$$.Data::UUID->new()->create_str())
+      editkey => $editkey,
     });
   };
   my $message = $@ ? 'regfailed' : 'registered';
