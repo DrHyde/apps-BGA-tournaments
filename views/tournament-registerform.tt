@@ -310,6 +310,10 @@ END; %]
       [% END %]
     </select></td>
   </tr>
+  <tr>
+    <td align=right><strong>Notes</strong><br>anything else the organisers should know?</td>
+    <td><textarea maxlength=250 rows=4 columns=60 name=notes>[% form.notes | html %]</textarea></td>
+  </tr>
   <tr><td colspan=2>
     <input name=bga_member type=checkbox checked> are you a member of the BGA or another national Go organisation?
   </td></tr>

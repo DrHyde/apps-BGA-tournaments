@@ -22,5 +22,6 @@ CREATE TABLE registration (
   editkey       CHAR(32), -- Digest::MD5::md5_hex
   bga_member    INT NOT NULL DEFAULT 0,
   registered_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  notes         VARCHAR(250),
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
