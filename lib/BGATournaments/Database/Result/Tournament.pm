@@ -20,6 +20,11 @@ __PACKAGE__->has_many(
   { 'foreign.tournament_id' => 'self.id' }
 );
 
+__PACKAGE__->has_many(
+  tournament_classes => 'BGATournaments::Database::Result::TournamentClass',
+  { 'foreign.tournament_id' => 'self.id' }
+);
+
 sub total_registered {
   my $self = shift;
   $self->registrants_rs()->count();

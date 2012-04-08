@@ -25,3 +25,11 @@ CREATE TABLE registration (
   notes         VARCHAR(250),
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE tournament_classes (
+  tournament_id CHAR(64)     NOT NULL,
+  class_name    CHAR(32)     NOT NULL,
+  until         TIMESTAMP    NOT NULL,
+  price         DECIMAL(6,2) NOT NULL,
+  PRIMARY KEY (tournament_id, class_name, until)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
