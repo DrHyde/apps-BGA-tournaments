@@ -24,6 +24,7 @@ CREATE TABLE registration (
   registered_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   notes         VARCHAR(250),
   class         CHAR(32) NOT NULL,
+  rounds        CHAR(32) NOT NULL, -- CSV
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

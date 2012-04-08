@@ -8,7 +8,7 @@ __PACKAGE__->table('registration');
 __PACKAGE__->add_columns(qw(
   tournament_id email given_name family_name
   grade club country show_on_site editkey
-  bga_member notes class
+  bga_member notes class rounds
 ));
 
 __PACKAGE__->belongs_to(

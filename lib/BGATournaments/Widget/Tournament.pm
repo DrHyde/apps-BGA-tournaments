@@ -36,10 +36,14 @@ sub _reg_form_as_hash { map { $_ => params()->{$_} } @all_reg_fields; }
 sub registerform {
   my $self = shift;
   my $tournament_id = params()->{tournament_id};
-  my %form = _reg_form_as_hash();
+  my $tournament = $self->schema()->resultset('Tournament')->find($tournament_id);
+  my %form = (
+    _reg_form_as_hash(),
+    map { 'round'.$_ => 1 } (1 .. $tournament->rounds())
+  );
   return {
     tournament => { id => $tournament_id },
-    tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
+    tournament_obj => $tournament,
     form       => \%form
   };
 }
@@ -55,27 +59,33 @@ sub editregisterform {
       message    => 'wrongkey',
     };
   }
+  my @rounds = split(/,/, $registration->rounds());
+  my $tournament = $self->schema()->resultset('Tournament')->find($tournament_id);
   return {
     tournament => $tournament_id,
-    tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
+    tournament_obj => $tournament,
     template   => 'tournament-registerform.tt',
     form       => {
-      map { $_ => $registration->$_() } (@all_reg_fields, 'editkey')
+      (map { $_ => $registration->$_() } (@all_reg_fields, 'editkey')),
+      (map { 'round'.$_ => $rounds[$_ - 1] } (1 .. $tournament->rounds())),
     },
     nextaction => 'editregistrationresults',
   };
-
 }
 
 sub registerformresults {
   my $self = shift;
   my $tournament_id = params()->{tournament_id};
-  my %form = _reg_form_as_hash();
+  my $tournament = $self->schema()->resultset('Tournament')->find($tournament_id);
+  my %form = (
+    _reg_form_as_hash(),
+    map { 'round'.$_ => params()->{'round'.$_} || 0 } (1 .. $tournament->rounds())
+  );
   foreach (@mandatory_reg_fields) {
     if(!$form{$_}) {
       return {
         tournament => { id => $tournament_id },
-        tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
+        tournament_obj => $tournament,
         form       => \%form,
         template   => 'tournament-registerform.tt',
       };
@@ -110,6 +120,7 @@ sub registerformresults {
       notes        => (params()->{notes}        ? params()->{notes} : ''),
       (params()->{club} ? (club => params()->{club}) : ()),
       editkey => $editkey,
+      rounds => join(',', map { params()->{'round'.$_} ? 1 : 0 } (1 .. $tournament->rounds())),
     });
   };
   my $message = $@ ? 'regfailed' : 'registered';
@@ -148,13 +159,17 @@ National assoc member: ".(params()->{bga_member} ? "Yes" : "No")."
 sub editregisterformresults {
   my $self = shift;
   my $tournament_id = params()->{tournament_id};
-  my %form = (_reg_form_as_hash(), editkey => params()->{editkey});;
+  my $tournament    = $self->schema()->resultset('Tournament')->find($tournament_id);
+  my %form = (
+    _reg_form_as_hash(), editkey => params()->{editkey},
+    (map { 'round'.$_ => params()->{'round'.$_  || 0 } } (1 .. $tournament->rounds())),
+  );
 
   foreach (@mandatory_reg_fields) {
     if(!$form{$_}) {
       return {
         tournament => { id => $tournament_id },
-        tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
+        tournament_obj => $tournament,
         form       => \%form,
         template   => 'tournament-registerform.tt',
         nextaction => 'editregistrationresults',
@@ -181,6 +196,7 @@ sub editregisterformresults {
   $registration->show_on_site(params()->{show_on_site} ? 1 : 0);
   $registration->bga_member(params()->{bga_member} ? 1 : 0);
   $registration->notes(params()->{notes} ? params()->{notes} : '');
+  $registration->rounds(join(',', map { params()->{'round'.$_} ? 1 : 0 } (1 .. $tournament->rounds())));
   $registration->update();
 
   return { %{$return},

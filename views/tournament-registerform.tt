@@ -324,6 +324,15 @@ END; %]
     </select></td>
   </tr>
   <tr>
+    <th align=right>Which rounds will you play in?</th>
+    <td>
+      [% FOREACH round IN [1 .. tournament_obj.rounds] %]
+        <input type=checkbox name=round[% round %] value=1
+          [% this_round="round" _ round; IF form.$this_round %] checked [% END %]>&nbsp;[% round %]
+      [% END %]
+    </td>
+  </tr>
+  <tr>
     <td valign=top align=right><strong>Notes</strong><br>anything else the organisers should know?</td>
     <td><textarea maxlength=250 rows=4 columns=60 name=notes>[% form.notes | html %]</textarea></td>
   </tr>
