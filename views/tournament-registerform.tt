@@ -30,10 +30,6 @@ END; %]
     <td><input type=text name=email value="[% form.email | html %]"></td>
   </tr>
   <tr>
-    <th align=right>Club</th>
-    <td><input type=text name=club value="[% form.club | html %]"></td>
-  </tr>
-  <tr>
     <th align=right>Registration class [% asterisk('class') %]</th>
     <td>
       <select name=class>
@@ -45,6 +41,10 @@ END; %]
         [% END %]
       </select>
     </td>
+  </tr>
+  <tr>
+    <th align=right>Club</th>
+    <td><input type=text name=club value="[% form.club | html %]"></td>
   </tr>
   <tr>
     <th align=right>Country [% asterisk('country') %]</th>
