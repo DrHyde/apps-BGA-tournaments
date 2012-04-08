@@ -324,12 +324,21 @@ END; %]
     </select></td>
   </tr>
   <tr>
-    <td align=right><strong>Notes</strong><br>anything else the organisers should know?</td>
+    <td valign=top align=right><strong>Notes</strong><br>anything else the organisers should know?</td>
     <td><textarea maxlength=250 rows=4 columns=60 name=notes>[% form.notes | html %]</textarea></td>
   </tr>
-  <tr><td colspan=2>
+  <!-- <tr><td colspan=2>
     <input name=bga_member type=checkbox checked> are you a member of the BGA or another national Go organisation?
-  </td></tr>
+  </td></tr> -->
+  <tr>
+    <td align=right><strong>are you a member of the BGA</strong><br>or another national Go organisation?</td>
+    <td valign=top>
+      <input type=radio name=bga_member value=1
+        [% IF form.bga_member || !form.bga_member.defined %] checked [% END %] >Yes
+      <input type=radio name=bga_member value=0
+        [% IF !form.bga_member && form.bga_member.defined %] checked [% END %] >No
+    </td>
+  </tr>
   <tr><td colspan=2>
     <input name=show_on_site type=checkbox checked> untick this if you want to hide your registration
   </td></tr>
