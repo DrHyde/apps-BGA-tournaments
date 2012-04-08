@@ -25,6 +25,20 @@ __PACKAGE__->has_many(
   { 'foreign.tournament_id' => 'self.id' }
 );
 
+sub current_classes {
+  my $self = shift;
+  my @all_classes = sort {
+    $a->until() cmp $b->until()
+  } $self->tournament_classes_rs->search_literal('until > now()');
+  my %seen = ();
+  foreach my $class (@all_classes) {
+    if(!$seen{$class->class_name}) {
+      $seen{$class->class_name} = $class;
+    }
+  }
+  return values(%seen);
+}
+
 sub total_registered {
   my $self = shift;
   $self->registrants_rs()->count();

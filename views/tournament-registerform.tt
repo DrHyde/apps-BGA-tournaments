@@ -34,6 +34,19 @@ END; %]
     <td><input type=text name=club value="[% form.club | html %]"></td>
   </tr>
   <tr>
+    <th align=right>Registration class [% asterisk('class') %]</th>
+    <td>
+      <select name=class>
+        <option value='' [% IF ! form.class %] selected [% END %]>-- please choose --
+        [% FOREACH class_obj IN tournament_obj.current_classes %]
+          <option value=[% class_obj.class_name %]
+            [% IF form.class == class_obj.class_name %] selected [% END %] >
+            [% class_obj.class_name %] (&pound; [% class_obj.price %])
+        [% END %]
+      </select>
+    </td>
+  </tr>
+  <tr>
     <th align=right>Country [% asterisk('country') %]</th>
     <td>
       <select name=country>
@@ -292,7 +305,7 @@ END; %]
   <tr>
     <th align=right>Grade [% asterisk('grade') %]</th>
     <td><select name=grade>
-      <option value='' [% IF ! form.grae %] selected [% END %]>-- please choose --
+      <option value='' [% IF ! form.grade %] selected [% END %]>-- please choose --
       [% grades = [];
          FOREACH number IN [1 .. 30];
            grades.push(number _ 'k');

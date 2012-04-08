@@ -23,6 +23,7 @@ CREATE TABLE registration (
   bga_member    INT NOT NULL DEFAULT 0,
   registered_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   notes         VARCHAR(250),
+  class         CHAR(32) NOT NULL,
   PRIMARY KEY (tournament_id, email, given_name, family_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

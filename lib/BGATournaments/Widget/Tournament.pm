@@ -10,7 +10,7 @@ use Digest::MD5 qw(md5_base64);
 
 use base qw(BGATournaments::Widget);
 
-my @mandatory_reg_fields = qw(email given_name family_name country grade);
+my @mandatory_reg_fields = qw(email given_name family_name country grade class);
 my @all_reg_fields = (@mandatory_reg_fields, qw(club show_on_site bga_member notes));
 
 sub list {
@@ -38,6 +38,7 @@ sub registerform {
   my %form = _reg_form_as_hash();
   return {
     tournament => { id => $tournament_id },
+    tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
     form       => \%form
   };
 }
@@ -55,6 +56,7 @@ sub editregisterform {
   }
   return {
     tournament => $tournament_id,
+    tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
     template   => 'tournament-registerform.tt',
     form       => {
       map { $_ => $registration->$_() } (@all_reg_fields, 'editkey')
@@ -72,6 +74,7 @@ sub registerformresults {
     if(!$form{$_}) {
       return {
         tournament => { id => $tournament_id },
+        tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
         form       => \%form,
         template   => 'tournament-registerform.tt',
       };
@@ -127,6 +130,7 @@ sub editregisterformresults {
     if(!$form{$_}) {
       return {
         tournament => { id => $tournament_id },
+        tournament_obj => $self->schema()->resultset('Tournament')->find($tournament_id),
         form       => \%form,
         template   => 'tournament-registerform.tt',
         nextaction => 'editregistrationresults',
