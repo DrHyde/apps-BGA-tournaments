@@ -7,6 +7,7 @@ use DateTime;
 use DateTime::Format::MySQL;
 use Data::UUID;
 use Digest::MD5 qw(md5_base64);
+use MIME::Lite;
 
 use base qw(BGATournaments::Widget);
 
@@ -113,7 +114,30 @@ sub registerformresults {
   };
   my $message = $@ ? 'regfailed' : 'registered';
   if($message eq 'registered') {
-    # FIXME send email
+    my $msg = MIME::Lite->new(
+      From    => $tournament->email(),
+      To      => params()->{email},
+      Cc      => $tournament->email(),
+      Subject => $tournament->name(),
+      Data    => "
+Thankyou for registering for ".$tournament->name().".
+
+Your registration details are below, please check that they are
+correct.  You can edit them by visiting:
+
+http://FIXME/tournaments/".$tournament->id()."/editregistration/$editkey
+
+           Given name: ".params()->{given_name}."
+          Family name: ".params()->{family_name}."
+                Email: ".params()->{email}."
+   Registration class: ".params()->{class}."
+                 Club: ".params()->{club}."
+              Country: ".params()->{country}."
+                Grade: ".params()->{grade}."
+                Notes: ".params()->{notes}."
+      Show on website: ".(params()->{show_on_site} ? "Yes" : "No (but we wish you'd change your mind)")."
+National assoc member: ".(params()->{bga_member} ? "Yes" : "No")."
+")->send();
   }
   return { %{$return},
     message      => $message,
@@ -159,7 +183,6 @@ sub editregisterformresults {
   $registration->notes(params()->{notes} ? params()->{notes} : '');
   $registration->update();
 
-    # FIXME send email
   return { %{$return},
     message      => 'edited',
     registration => $registration,

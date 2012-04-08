@@ -7,6 +7,7 @@ MODULE: foreach my $module (qw(
   DBD::mysql DBIx::Class Dancer
   DateTime DateTime::Format::MySQL
   Digest::MD5 Data::UUID
+  MIME::Lite
   Template YAML
 )) {
   if(eval "use $module; \$${module}::VERSION") {
