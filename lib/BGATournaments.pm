@@ -3,7 +3,7 @@ package BGATournaments;
 use strict;
 use warnings;
 
-use constant DEBUG => 1;
+use constant DEBUG => 0;
 use Data::Dumper;
 
 use Dancer ':syntax';

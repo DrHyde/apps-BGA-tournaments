@@ -337,7 +337,7 @@ END; %]
     <td><textarea maxlength=250 rows=4 columns=60 name=notes>[% form.notes | html %]</textarea></td>
   </tr>
   <tr>
-    <td align=right><strong>are you a member of the BGA</strong><br>or another national Go organisation?</td>
+    <td align=right><strong>are you a member of the BGA</strong><br>or another national Go organisation?<br>If not there may be an extra fee.</td>
     <td valign=top>
       <input type=radio name=bga_member value=1
         [% IF form.bga_member || !form.bga_member.defined %] checked [% END %] >Yes
