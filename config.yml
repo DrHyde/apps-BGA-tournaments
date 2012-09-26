@@ -5,6 +5,9 @@ environment: "development"
 
 layout: "main"
 
+hostname: "bgatournaments.barnyard.co.uk"
+port: "3000"
+
 database:
   schema: "dbi:mysql:database=bgatournaments"
   user:   "root"

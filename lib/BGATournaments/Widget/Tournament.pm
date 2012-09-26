@@ -136,7 +136,7 @@ Thankyou for registering for ".$tournament->name().".
 Your registration details are below, please check that they are
 correct.  You can edit them by visiting:
 
-http://FIXME/tournaments/".$tournament->id()."/editregistration/$editkey
+http://".config()->{hostname}.':'.config()->{port}."/tournaments/".$tournament->id()."/editregistration/$editkey
 
            Given name: ".params()->{given_name}."
           Family name: ".params()->{family_name}."
