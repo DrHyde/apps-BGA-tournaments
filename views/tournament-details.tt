@@ -49,8 +49,8 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
   <tr>
     <th>Given name</th>
     <th>Family name</th>
-    <th>Grade</th>
-    <th class=sorttable_gograde>Club</th>
+    <th class=sorttable_gograde>Grade</th>
+    <th>Club</th>
     <th>Country</th>
   </tr>
   [% FOREACH person = tournament.people_to_show %]
