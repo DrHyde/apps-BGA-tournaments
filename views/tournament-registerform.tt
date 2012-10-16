@@ -303,7 +303,7 @@ END; %]
     </td>
   </tr>
   <tr>
-    <td align=right><strong>Grade [% asterisk('grade') %]</strong><br>if this isn't close to your EGF rating,<br>please explain why in the 'Notes' field</td>
+    <td align=right><strong>Grade [% asterisk('grade') %]</strong><br>if this isn't the same as your <a target=_new_window_ href=http://www.europeangodatabase.eu/EGD/Find_Player.php>EGF rating</a>,<br>please explain why in the 'Notes' field</td>
     <td valign=top><select name=grade>
       <option value='' [% IF ! form.grade %] selected [% END %]>-- please choose --
       [% grades = [];
