@@ -17,6 +17,8 @@ post '/tournaments/:tournament_id/registerresults'           => widget(Tournamen
 get  '/tournaments/:tournament_id/editregistration/:editkey' => widget(Tournament => 'editregisterform');
 post '/tournaments/:tournament_id/editregistrationresults'   => widget(Tournament => 'editregisterformresults');
 
+get  '/tournaments/:tournament_id/admin'                     => widget(Admin      => 'admin');
+
 get  '/'                                                     => widget('Root');
 
 sub widget {

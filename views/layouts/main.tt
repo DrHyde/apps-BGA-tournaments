@@ -8,10 +8,17 @@
 </head>
 <body>
 <div id="header">
-  <a href=/>Home</a> |
-  <a href=/about>About</a> |
-  <a href=http://britgo.org/>BGA</a> |
-  <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
+  <table width=100%><tr>
+    <td align=left>
+      <a href=/>Home</a> |
+      <a href=http://britgo.org/>BGA</a> |
+      <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
+    </td><td align=right>
+      [% IF tournament.id %]
+        <a href=[% tournament.id %]/admin>Admin</a>
+      [% END %]
+    </td>
+  </tr></table>
 </div>
 
 [% content %]
