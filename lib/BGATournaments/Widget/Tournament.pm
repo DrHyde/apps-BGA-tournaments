@@ -126,6 +126,7 @@ sub registerformresults {
       editkey => $editkey,
       rounds => join(',', map { params()->{'round'.$_} ? 1 : 0 } (1 .. $tournament->rounds())),
     });
+    push @{$return->{registrants}}, $registration;
   };
   my $message = $@ ? 'regfailed' : 'registered';
   if($message eq 'registered') {
@@ -207,6 +208,7 @@ sub editregisterformresults {
   return { %{$return},
     message      => 'edited',
     registration => $registration,
+    registrants  => [$tournament->people_to_show()],
   };
 }
 
