@@ -47,24 +47,36 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
 
 <table class=sortable>
   <tr>
+    [% IF admin_mode %] <th></th> [% END %]
     <th>Given name</th>
     <th>Family name</th>
     <th class=sorttable_gograde>Grade</th>
     <th>Club</th>
     <th>Country</th>
+    [% IF admin_mode %]
+      <th>Reg. is public?</th>
+      <th>Email</th>
+    [% END %]
   </tr>
-  [% FOREACH person = tournament.people_to_show %]
+  [% FOREACH person = registrants %]
   <tr>
+    [% IF admin_mode %]
+      <td><a href=editregistration/[% person.editkey %]>Edit</a></td>
+    [% END %]
     <td>[% person.given_name %]</td>
     <td>[% person.family_name %]</td>
     <td>[% person.grade %]</td>
     <td>[% person.club %]</td>
     <td>[% person.country %]</td>
+    [% IF admin_mode %]
+      <td>[% IF person.show_on_site %]Yes[% ELSE %]No[% END %]</td>
+      <td>[% person.email %]</td>
+    [% END %]
   </tr>
   [% END %]
 </table>
 
-[% IF tournament.total_hidden %]
+[% IF !admin_mode && tournament.total_hidden %]
   including [% tournament.total_hidden %] who didn't want to be listed above.
 [% END %]
 

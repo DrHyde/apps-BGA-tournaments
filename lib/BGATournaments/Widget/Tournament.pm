@@ -29,7 +29,10 @@ sub details {
   my $tournament_id = params()->{tournament_id};
   my $tournament = $database->resultset('Tournament')->find($tournament_id);
   return {} unless($tournament);
-  return { tournament => $tournament };
+  return {
+    tournament  => $tournament,
+    registrants => [$tournament->people_to_show()]
+  };
 }
 
 sub _reg_form_as_hash { map { $_ => params()->{$_} } @all_reg_fields; }
@@ -101,6 +104,7 @@ sub registerformresults {
   my $return = {
     tournament => $tournament,
     template   => 'tournament-details.tt',
+    registrants => [$tournament->people_to_show()],
   };
 
   if($registration) {
@@ -184,6 +188,7 @@ sub editregisterformresults {
   my $return = {
     tournament => $tournament,
     template   => 'tournament-details.tt',
+    registrants => [$tournament->people_to_show()],
   };
 
   if(!$registration) {

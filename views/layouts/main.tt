@@ -15,7 +15,7 @@
       <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
     </td><td align=right>
       [% IF tournament.id %]
-        <a href=[% tournament.id %]/admin>Admin</a>
+        <a href=/tournaments/[% tournament.id %]/admin>Admin</a>
       [% END %]
       [% IF logged_in %]
         <a href=/logout>Logout</a>
