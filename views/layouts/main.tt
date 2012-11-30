@@ -17,6 +17,9 @@
       [% IF tournament.id %]
         <a href=[% tournament.id %]/admin>Admin</a>
       [% END %]
+      [% IF logged_in %]
+        <a href=/logout>Logout</a>
+      [% END %]
     </td>
   </tr></table>
 </div>

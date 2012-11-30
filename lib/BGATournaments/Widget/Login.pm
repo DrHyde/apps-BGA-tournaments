@@ -29,7 +29,14 @@ sub loginformresults {
       email    => $email
     }
   }
-  return {}
+  session(user_id => $email);
+  return redirect(session('target_page'));
 }
+
+sub logout {
+  session(user_id => undef);
+  return redirect('/login');
+}
+
 
 1;

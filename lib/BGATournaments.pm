@@ -20,6 +20,7 @@ post '/tournaments/:tournament_id/editregistrationresults'   => widget(Tournamen
 get  '/tournaments/:tournament_id/admin'                     => widget(Admin      => 'admin');
 get  '/login'                                                => widget(Login      => 'loginform');
 post '/login'                                                => widget(Login      => 'loginformresults');
+get  '/logout'                                               => widget(Login      => 'logout');
 
 get  '/'                                                     => widget('Root');
 
@@ -44,6 +45,8 @@ sub widget {
       ($results->{template} || $template),
       {
         dancer => { route => $route, template => $template, },
+
+        logged_in => session('user_id'),
         %{$results}
       }
     );
