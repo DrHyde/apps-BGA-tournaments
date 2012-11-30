@@ -18,6 +18,8 @@ get  '/tournaments/:tournament_id/editregistration/:editkey' => widget(Tournamen
 post '/tournaments/:tournament_id/editregistrationresults'   => widget(Tournament => 'editregisterformresults');
 
 get  '/tournaments/:tournament_id/admin'                     => widget(Admin      => 'admin');
+get  '/login'                                                => widget(Login      => 'loginform');
+post '/login'                                                => widget(Login      => 'loginformresults');
 
 get  '/'                                                     => widget('Root');
 

@@ -1,0 +1,16 @@
+Please log in
+
+[% IF error %]<font color=red>[% error %]</font>[% END %]
+<form action=login method=post>
+<table border=1>
+  <tr>
+    <th align=right>Email</th>
+    <td><input type=text name=email value='[% email | html %]'></td>
+  </tr>
+  <tr>
+    <th align=right>Password</th>
+    <td><input type=text name=password></td>
+  </tr>
+</table>
+<input type=submit>
+</form>

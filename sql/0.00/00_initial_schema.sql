@@ -35,3 +35,15 @@ CREATE TABLE tournament_classes (
   price         DECIMAL(6,2) NOT NULL,
   PRIMARY KEY (tournament_id, class_name, until)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE login (
+  email CHAR(128) NOT NULL,
+  pw_md5 CHAR(22) NOT NULL,
+  PRIMARY KEY (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE tournament_login (
+  email CHAR(129) NOT NULL,
+  tournament_id CHAR(64) NOT NULL
+  PRIMARY KEY (email, tournament_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
