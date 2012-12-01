@@ -96,7 +96,6 @@ sub registerformresults {
   }
 
   my $database = $self->schema();
-  my $tournament = $database->resultset('Tournament')->find($tournament_id);
   my $registration = $database->resultset('Registration')->find({
     map { $_ => params()->{$_} } qw(tournament_id email given_name family_name)
   });
@@ -183,7 +182,6 @@ sub editregisterformresults {
   }
 
   my $database = $self->schema();
-  my $tournament = $database->resultset('Tournament')->find($tournament_id);
   my $registration = $database->resultset('Registration')->find({ editkey => params()->{editkey} }); 
 
   my $return = {

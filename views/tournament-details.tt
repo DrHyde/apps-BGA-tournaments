@@ -45,6 +45,10 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
   currently [% tournament.total_registered %]
   [% IF tournament.total_registered == 1 %] person [% ELSE %] people [% END %] registered:
 
+[% IF admin_mode %]
+  <a href=admin/download>Download</a> for GoDraw.
+[% END %]
+
 <table class=sortable>
   <tr>
     [% IF admin_mode %] <th></th> [% END %]
@@ -55,6 +59,9 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
     <th>Country</th>
     [% IF admin_mode %]
       <th>Reg. is public?</th>
+      <th>Registered at</th>
+      <th>Class</th>
+      <th>Fee</th>
       <th>Email</th>
     [% END %]
   </tr>
@@ -70,6 +77,9 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
     <td>[% person.country %]</td>
     [% IF admin_mode %]
       <td>[% IF person.show_on_site %]Yes[% ELSE %]No[% END %]</td>
+      <td>[% person.registered_on %]</td>
+      <td>[% person.class %]</td>
+      <td>[% person.to_pay %]</td>
       <td>[% person.email %]</td>
     [% END %]
   </tr>
