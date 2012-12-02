@@ -46,7 +46,7 @@ sub download {
     $data .= $person->grade()."\t"; 
     $data .= $person->club()."\t"; 
     $data .= $person->country()."\t"; 
-    $data .= "tp: ".$person->to_pay()." (".$person->class()."); ";
+    $data .= "tp: ".$person->to_pay()." (".$person->class()." reg at ".$person->registered_on()."); ";
 
     my @rounds_binary = split(/,/, $person->rounds());
     my @rounds_human = ();
