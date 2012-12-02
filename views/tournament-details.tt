@@ -51,7 +51,7 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
 
 <table class=sortable>
   <tr>
-    [% IF admin_mode %] <th></th> [% END %]
+    [% IF admin_mode %] <th></th><th></th> [% END %]
     <th>Given name</th>
     <th>Family name</th>
     <th class=sorttable_gograde>Grade</th>
@@ -69,6 +69,7 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
   <tr>
     [% IF admin_mode %]
       <td><a href=editregistration/[% person.editkey %]>Edit</a></td>
+      <td><a href=deleteregistration/[% person.editkey %]>Delete</a></td>
     [% END %]
     <td>[% person.given_name %]</td>
     <td>[% person.family_name %]</td>

@@ -16,6 +16,7 @@ get  '/tournaments/:tournament_id/registerform'              => widget(Tournamen
 post '/tournaments/:tournament_id/registerresults'           => widget(Tournament => 'registerformresults');
 get  '/tournaments/:tournament_id/editregistration/:editkey' => widget(Tournament => 'editregisterform');
 post '/tournaments/:tournament_id/editregistrationresults'   => widget(Tournament => 'editregisterformresults');
+get  '/tournaments/:tournament_id/deleteregistration/:editkey' => widget(Tournament => 'delete');
 
 get  '/tournaments/:tournament_id/admin'                     => widget(Admin      => 'admin');
 get  '/tournaments/:tournament_id/admin/download'            => widget(Admin      => 'download');

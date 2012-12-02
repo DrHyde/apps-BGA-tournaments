@@ -76,6 +76,15 @@ sub editregisterform {
   };
 }
 
+sub delete {
+  my $self = shift;
+  my $tournament_id = params()->{tournament_id};
+  if(my $registration = $self->schema()->resultset('Registration')->find({editkey => params()->{editkey}})) {
+    $registration->delete();
+  }
+  return redirect("/tournaments/$tournament_id/admin");
+}
+
 sub registerformresults {
   my $self = shift;
   my $tournament_id = params()->{tournament_id};
