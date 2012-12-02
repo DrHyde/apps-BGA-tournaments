@@ -10,15 +10,15 @@
 <div id="header">
   <table width=100%><tr>
     <td align=left>
-      <a href=/>Home</a> |
-      <a href=http://britgo.org/>BGA</a> |
-      <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
+      <a href=/>Home</a>
+      | <a href=http://britgo.org/>BGA</a>
+      | <a href=https://github.com/DrHyde/apps-BGA-tournaments>Source</a>
+      [% IF logged_in %]
+        | <a href=/logout>Logout</a>
+      [% END %]
     </td><td align=right>
       [% IF tournament.id %]
         <a href=/tournaments/[% tournament.id %]/admin>Admin</a>
-      [% END %]
-      [% IF logged_in %]
-        <a href=/logout>Logout</a>
       [% END %]
     </td>
   </tr></table>
