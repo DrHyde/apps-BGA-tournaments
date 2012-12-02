@@ -268,6 +268,9 @@ sorttable = {
   sort_gograde: function(a,b) {
     aa = a[0];
     bb = b[0];
+    if(aa.match(/p/)) { aa = aa.replace(/^/,'2').replace(/p/,'d'); }
+    if(bb.match(/p/)) { bb = bb.replace(/^/,'2').replace(/p/,'d'); }
+
     if(aa.match(/d/)) { aa = aa.replace(/d/, ''); }
      else { aa = aa.replace(/^/, '-').replace('k', ''); }
     aa = parseFloat(aa);
