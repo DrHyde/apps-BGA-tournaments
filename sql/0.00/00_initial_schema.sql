@@ -44,6 +44,6 @@ CREATE TABLE login (
 
 CREATE TABLE tournament_login (
   email CHAR(129) NOT NULL,
-  tournament_id CHAR(64) NOT NULL
+  tournament_id CHAR(64) NOT NULL,
   PRIMARY KEY (email, tournament_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
