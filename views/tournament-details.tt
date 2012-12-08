@@ -66,24 +66,27 @@ There [% IF tournament.total_registered == 1 %] is [% ELSE %] are [% END %]
     [% END %]
   </tr>
   [% FOREACH person = registrants %]
-  <tr>
-    [% IF admin_mode %]
-      <td><a href=editregistration/[% person.editkey %]>Edit</a></td>
-      <td><a href=deleteregistration/[% person.editkey %]>Delete</a></td>
+    <tr>
+      [% IF admin_mode %]
+        <td><a href=editregistration/[% person.editkey %]>Edit</a></td>
+        <td><a href=deleteregistration/[% person.editkey %]>Delete</a></td>
+      [% END %]
+      <td>[% person.given_name %]</td>
+      <td>[% person.family_name %]</td>
+      <td>[% person.grade %]</td>
+      <td>[% person.club %]</td>
+      <td>[% person.country %]</td>
+      [% IF admin_mode %]
+        <td>[% IF person.show_on_site %]Yes[% ELSE %]No[% END %]</td>
+        <td>[% person.registered_on %]</td>
+        <td>[% person.class %]</td>
+        <td>[% person.to_pay %]</td>
+        <td>[% person.email %]</td>
+      [% END %]
+    </tr>
+    [% IF admin_mode && person.notes %]
+      <tr><td colspan=2></td><td colspan=10>[% person.notes %]</td></tr>
     [% END %]
-    <td>[% person.given_name %]</td>
-    <td>[% person.family_name %]</td>
-    <td>[% person.grade %]</td>
-    <td>[% person.club %]</td>
-    <td>[% person.country %]</td>
-    [% IF admin_mode %]
-      <td>[% IF person.show_on_site %]Yes[% ELSE %]No[% END %]</td>
-      <td>[% person.registered_on %]</td>
-      <td>[% person.class %]</td>
-      <td>[% person.to_pay %]</td>
-      <td>[% person.email %]</td>
-    [% END %]
-  </tr>
   [% END %]
 </table>
 

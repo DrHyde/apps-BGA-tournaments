@@ -34,31 +34,30 @@ sub download {
   my $database = $self->schema();
   my $tournament_id = params()->{tournament_id};
 
-  my $data="ID\tFAMILY\tGIVEN\tGRADE\tCLUB\tCOUNTRY\tNOTE\n";
+  my $data="ID\tFAMILY\tGIVEN\tGRADE\tCLUB\tCOUNTRY\tROUNDS\tNOTE\tCOMMENT\n";
   my @registrants = $database->resultset('Tournament')->find($tournament_id)->registrants()->all();
 
   my $id = 0;
   foreach my $person (@registrants) {
     $id++;
-    $data .= "$id\t";
-    $data .= $person->family_name()."\t"; 
-    $data .= $person->given_name()."\t"; 
-    $data .= $person->grade()."\t"; 
-    $data .= $person->club()."\t"; 
-    $data .= $person->country()."\t"; 
-    $data .= "tp: ".$person->to_pay()." (".$person->class()." reg at ".$person->registered_on()."); ";
+
+    my($family_name, $given_name, $grade) = map { $person->$_() } qw(family_name given_name grade);
+
+    my $club = $person->club() || 'No Club';
+    my $country = $person->country();
+    $country = 'UK' if($country eq 'GB');
+
+    my $note = "tp: ".$person->to_pay();
+    (my $comment = "Class: ".$person->class()."; Reg at: ".$person->registered_on()."; Notes: ".$person->notes()) =~ s/[\n\r]+/ /g;
 
     my @rounds_binary = split(/,/, $person->rounds());
     my @rounds_human = ();
     foreach my $round (1 .. $#rounds_binary + 1) {
       push @rounds_human, $round if($rounds_binary[$round - 1]);
     }
-    my $rounds = '['.join(', ', @rounds_human).']';
-    
-    $data .= "rounds: $rounds; ";
-    (my $notes = $person->notes()) =~ s/[\n\r]+/ /g;
-    $data .= "notes: $notes";
-    $data .= "\n";
+    my $rounds = join(' ', @rounds_human);
+
+    $data .= join("\t", $id, $family_name, $given_name, $grade, $club, $country, $rounds, $note, $comment)."\n";
   }
 
   return send_file(
