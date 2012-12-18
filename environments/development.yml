@@ -11,6 +11,8 @@ logger: "console"
 # (debug, warning and error)
 log: "core"
 
+logger_format: "[%P] %L @%U> %m in %f l. %l"
+
 # should Dancer consider warnings as critical errors?
 warnings: 1
 
