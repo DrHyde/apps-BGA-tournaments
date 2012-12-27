@@ -34,7 +34,7 @@ sub download {
   my $database = $self->schema();
   my $tournament_id = params()->{tournament_id};
 
-  my $data="ID\tFAMILY\tGIVEN\tGRADE\tCLUB\tCOUNTRY\tROUNDS\tNOTE\tCOMMENT\n";
+  my $data="ID\tFAMILY\tGIVEN\tGRADE\tCLUB\tCOUNTRY\tROUNDS\tNOTE\tCOMMENTS\n";
   my @registrants = $database->resultset('Tournament')->find($tournament_id)->registrants()->all();
 
   my $id = 0;
